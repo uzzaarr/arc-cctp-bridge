@@ -4,7 +4,6 @@
  *
  * Safety features:
  * - Loads private key ONLY from local scripts/.env
- * - Hard max amount limit (5 USDC)
  * - Enforces maxFee < amount
  * - Balance checks before any transaction
  * - Explicit YES confirmation required
@@ -42,7 +41,6 @@ const BASE_USDC = getAddress("0x833589fcd6edb6e08f4c7c32d4f71b54bda02913");
 const DESTINATION_DOMAIN = 26;
 const MIN_FINALITY = 1000;
 const HOOK_DATA = "0x636374702d666f72776172640000000000000000000000000000000000000000";
-const MAX_ALLOWED_USDC = 5;
 
 // ── Load .env ───────────────────────────────────────────────────
 function loadEnv() {
@@ -211,11 +209,6 @@ async function bridge(amountStr) {
     if (isNaN(amountUsdc) || amountUsdc <= 0) throw new Error("bad");
   } catch {
     console.error("\n❌ Invalid amount. Example: --amount 0.1\n");
-    process.exit(1);
-  }
-
-  if (amountUsdc > MAX_ALLOWED_USDC) {
-    console.error(`\n❌ Amount ${amountUsdc} exceeds hard safety limit of ${MAX_ALLOWED_USDC} USDC\n`);
     process.exit(1);
   }
 
