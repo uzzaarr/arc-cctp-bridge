@@ -27,12 +27,19 @@ Best for most people. You sign two transactions yourself on BaseScan.
 → Full walkthrough: [docs/HOW_TO_BRIDGE.md](docs/HOW_TO_BRIDGE.md)  
 → Copy-paste fields: [docs/CONTRACT_CALLS.md](docs/CONTRACT_CALLS.md)
 
-### Path B — AI Agent / Script (recommended for agents)
+### Path B — AI Agent / Script
 Use a **fresh burner wallet** + local `.env` file.  
-The agent never sees your private key.
+Do **not** paste your private key into chat. Keep it only in `scripts/.env` on your machine.
+
+```bash
+npm install
+cp scripts/.env.example scripts/.env   # then edit PRIVATE_KEY
+node scripts/bridge-base-to-arc.mjs --preflight
+node scripts/bridge-base-to-arc.mjs --amount 0.1
+```
 
 → Read [AGENTS.md](AGENTS.md) first (mandatory)  
-→ Then use the ready script: [scripts/bridge-base-to-arc.mjs](scripts/bridge-base-to-arc.mjs)
+→ Script: [scripts/bridge-base-to-arc.mjs](scripts/bridge-base-to-arc.mjs)
 
 ---
 
@@ -119,6 +126,7 @@ Arc: USDC minted to mintRecipient
 ```
 README.md                 ← you are here
 AGENTS.md                 ← hard rules for AI agents
+package.json
 scripts/
   bridge-base-to-arc.mjs  ← ready agent script
   .env.example
