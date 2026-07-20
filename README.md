@@ -72,7 +72,7 @@ Official references:
 | Base CCTP domain | `6` |
 | Arc chainId | `5042` |
 | Arc CCTP domain | `26` |
-| TokenMessenger V2 | `0x28b5A0e9C621a5BadaA536219b3a228C8168cf5d` |
+| TokenMessenger V2 | `0x28b5a0e9C621a5BadaA536219b3a228C8168cf5d` |
 | MessageTransmitter V2 | `0x81D40F21F12A8F0E3252Bccb954D722d4c464B64` |
 | Base USDC | `0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913` |
 | Arc USDC (ERC-20) | `0x3600000000000000000000000000000000000000` |
@@ -129,9 +129,7 @@ docs/
   FAQ.md
 references/
   addresses.json          ← single source of truth
-  function-signatures.md
 examples/
-  amounts.md
   mintRecipient-bytes32.md
 ```
 
