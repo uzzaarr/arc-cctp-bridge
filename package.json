@@ -1,0 +1,17 @@
+{
+  "name": "arc-cctp-bridge",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Base → Arc USDC bridge via Circle CCTP V2 + cctp-forward",
+  "scripts": {
+    "preflight": "node scripts/bridge-base-to-arc.mjs --preflight",
+    "bridge": "node scripts/bridge-base-to-arc.mjs"
+  },
+  "dependencies": {
+    "viem": "^2.21.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
