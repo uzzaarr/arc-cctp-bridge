@@ -25,9 +25,10 @@ import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// ── Config (from addresses.json) ──────────────────────────────────────────
-const TOKEN_MESSENGER = "0x28b5A0e9C621a5BadaA536219b3a228C8168cf5d";
-const BASE_USDC = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913";
+// ── Config (correct EIP-55 checksums) ────────────────────────────────
+// Note: modern viem strictly validates checksums. Wrong casing throws InvalidAddressError.
+const TOKEN_MESSENGER = getAddress("0x28b5a0e9c621a5badaa536219b3a228c8168cf5d");
+const BASE_USDC = getAddress("0x833589fcd6edb6e08f4c7c32d4f71b54bda02913");
 const DESTINATION_DOMAIN = 26;
 const MIN_FINALITY = 1000;
 const HOOK_DATA = "0x636374702d666f72776172640000000000000000000000000000000000000000";
