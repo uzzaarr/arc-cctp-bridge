@@ -43,11 +43,17 @@ Optimize for **no double-burn**, **correct addresses**, **correct domain 26**.
 ### Case 2: User wants the agent to execute the bridge
 
 - Instruct them to create a **fresh burner wallet** (not their main wallet).
-- Tell them to put the private key **only** in a local `.env` file (never in chat).
-- Use the ready script: [scripts/bridge-base-to-arc.mjs](scripts/bridge-base-to-arc.mjs)
+- Tell them to put the private key **only** in a local `scripts/.env` file (never in chat).
+- Steps:
+  ```bash
+  npm install
+  cp scripts/.env.example scripts/.env   # user edits PRIVATE_KEY
+  node scripts/bridge-base-to-arc.mjs --preflight
+  node scripts/bridge-base-to-arc.mjs --amount 0.1
+  ```
 - Always run preflight first.
 - Never print or log the private key.
-- Require explicit user confirmation before broadcasting the burn.
+- The script already requires typing `YES` before broadcasting.
 
 ---
 
@@ -89,7 +95,7 @@ Base network (8453)
 |----------|----------|
 | `depositForBurnWithHook` | `0x779b432d` |
 
-If the user shows a Base tx **to** `0x28b5A0e9…` with selector `0x779b432d`, the burn **shape** is correct.
+If the user shows a Base tx **to** TokenMessenger V2 with selector `0x779b432d`, the burn **shape** is correct.
 
 ---
 
@@ -118,7 +124,7 @@ If the user shows a Base tx **to** `0x28b5A0e9…` with selector `0x779b432d`, t
 ## Self-test before telling user to sign
 
 - [ ] Network = Base (8453)
-- [ ] Token Messenger = `0x28b5A0e9C621a5BadaA536219b3a228C8168cf5d`
+- [ ] Token Messenger = correct address from addresses.json
 - [ ] burnToken = Base USDC
 - [ ] destinationDomain = 26
 - [ ] mintRecipient = user (bytes32)
