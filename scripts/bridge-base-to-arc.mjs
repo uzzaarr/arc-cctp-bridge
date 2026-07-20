@@ -16,7 +16,7 @@
  *   4. node scripts/bridge-base-to-arc.mjs --amount 0.1
  */
 
-import { createPublicClient, createWalletClient, http, parseUnits, formatUnits, encodeFunctionData, pad, getAddress } from "viem";
+import { createPublicClient, createWalletClient, http, parseUnits, formatUnits, pad, getAddress } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 import { base } from "viem/chains";
 import { readFileSync, existsSync } from "fs";
@@ -153,21 +153,21 @@ async function preflight() {
 }
 
 async function bridge(amountUsdc) {
-  if (amountUdc > MAX_ALLOWED_USDC) {
-    console.error(`\n❌ Amount ${amountUdc} exceeds hard safety limit of ${MAX_ALLOWED_USDC} USDC\n`);
+  if (amountUsdc > MAX_ALLOWED_USDC) {
+    console.error(`\n❌ Amount ${amountUsdc} exceeds hard safety limit of ${MAX_ALLOWED_USDC} USDC\n`);
     process.exit(1);
   }
 
-  const amount = parseUnits(String(amountUdc), 6);
+  const amount = parseUnits(String(amountUsdc), 6);
   const maxFee = parseUnits("0.02", 6); // 0.02 USDC
   const recipient = RECIPIENT || account.address;
   const mintRecipient = toBytes32Address(recipient);
 
   console.log("\n🚀 Bridge plan");
-  console.log("-------------"
+  console.log("-------------");
   console.log("From          :", account.address);
   console.log("To (Arc)      :", recipient);
-  console.log("Amount        :", amountUdc, "USDC");
+  console.log("Amount        :", amountUsdc, "USDC");
   console.log("maxFee        :", "0.02 USDC");
   console.log("Domain        :", DESTINATION_DOMAIN);
   console.log("Hook          : cctp-forward");
