@@ -1,0 +1,24 @@
+# Arc CCTP Bridge Guide
+
+> Correct Base → Arc USDC bridge via Circle CCTP V2 + cctp-forward.
+
+## For agents
+
+1. Read AGENTS.md (hard rules: no re-burn, domain 26, no invented addresses, never ask for private keys)
+2. Load references/addresses.json (single source of truth)
+3. Humans → docs/HOW_TO_BRIDGE.md + docs/CONTRACT_CALLS.md
+4. Agents that can execute → scripts/bridge-base-to-arc.mjs (burner + local .env only)
+5. Safety: docs/SAFETY.md
+
+## Canonical burn
+
+Base TokenMessengerV2 0x28b5A0e9C621a5BadaA536219b3a228C8168cf5d
+function depositForBurnWithHook selector 0x779b432d
+destinationDomain 26
+hookData 0x636374702d666f72776172640000000000000000000000000000000000000000
+burnToken Base USDC 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913
+Arc chainId 5042
+
+## Completion
+
+Truth = Arc USDC balance of mintRecipient. Iris Base→Arc often pending forever — not a re-burn signal.
